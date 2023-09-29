@@ -1,0 +1,25 @@
+name: pr-agent
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  pr_agent:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - id: pr-agent
+        uses: Codium-ai/pr-agent@v0.8
+        env:
+          OPENAI.ORG: ${{ secrets.OPENAI_ORG }}
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_CODE_SUGGESTIONS.NUM_CODE_SUGGESTIONS: 6
+          github_action.auto_review: "true"
+          github_action.auto_describe: "true"
+          github_action.auto_improve: "true"
+          PR_REVIEWER.EXTRA_INSTRUCTIONS: "Please use Japanese in descriptions."
