@@ -4,6 +4,7 @@ on:
     types:
       - opened
       - reopened
+      - synchronize
 
 jobs:
   pr_agent:
@@ -19,6 +20,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_CODE_SUGGESTIONS.NUM_CODE_SUGGESTIONS: 6
           github_action.auto_review: "true"
-          github_action.auto_describe: "false"
-          github_action.auto_improve: "false"
+          github_action.auto_describe: "true"
+          github_action.auto_improve: "true"
           PR_REVIEWER.EXTRA_INSTRUCTIONS: "Please use Japanese in descriptions."
